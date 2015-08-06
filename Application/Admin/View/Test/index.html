@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>{$meta_title}｜{:C('WEB_SITE_TITLE')}后台管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <script src="__PUBLIC__/libs/jquery/1.x/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/admin.css">
+</head>
+
+<?php
+    $CONTROLLER_NAME = strtolower($Think.CONTROLLER_NAME);
+    $ACTION_NAME = strtolower($Think.ACTION_NAME);
+?>
+
+<body id="<?php echo 'body-'.$CONTROLLER_NAME.'-'.$ACTION_NAME; ?>" class="<?php echo 'body-'.$CONTROLLER_NAME.' body-'.$CONTROLLER_NAME.'-'.$ACTION_NAME; ?>">
+
+    <div class="full-container">
+        halo.
+    </div>
+
+    <div class="full-script">
+        <script src="__PUBLIC__/js/admin_source.js"></script>
+    </div>
+
+</body>
+</html>

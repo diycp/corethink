@@ -401,7 +401,7 @@ class ListBuilder extends Controller{
                                 $data[$column['name']] = '<i class="fa fa-ban-circle" style="color:red"></i>';
                                 break;
                             case '1':
-                                $data[$column['name']] = '<i class="fa fa-ok" style="color:green"></i>';
+                                $data[$column['name']] = '<i class="fa fa-check" style="color:green"></i>';
                                 break;
                         }
                         break;

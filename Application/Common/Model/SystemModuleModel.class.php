@@ -85,7 +85,7 @@ class SystemModuleModel extends Model{
                     $val['right_button'] .= '<a class="label label-danger ajax-get" href="'.U('setStatus', array('status' => 'uninstall', 'ids' => $val['id'])).'">卸载</a> ';
                     break;
                 case '1': //正常
-                    $val['status'] = '<i class="fa fa-ok" style="color:green"></i>';
+                    $val['status'] = '<i class="fa fa-check" style="color:green"></i>';
                     $val['right_button'] .= '<a class="label label-info ajax-get" href="'.U('updateInfo?id='.$val['id']).'">更新菜单</a> ';
                     $val['right_button'] .= '<a class="label label-warning ajax-get" href="'.U('setStatus', array('status' => 'forbid', 'ids' => $val['id'])).'">禁用</a> ';
                     $val['right_button'] .= '<a class="label label-danger ajax-get" href="'.U('setStatus', array('status' => 'uninstall', 'ids' => $val['id'])).'">卸载</a> ';

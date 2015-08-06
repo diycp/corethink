@@ -1,143 +1,21 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit">
     <title>{$meta_title}｜{:C('WEB_SITE_TITLE')}后台管理</title>
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/libs/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/libs/bootstrap_extend/css/bootstrap.extend.css?v={:C('STATIC_VERSION')}">
-    <script type="text/javascript" src="__PUBLIC__/libs/jquery/1.x/jquery-1.11.3.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="__PUBLIC__/libs/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="__PUBLIC__/libs/bootstrap_extend/js/bootstrap.extend.js?v={:C('STATIC_VERSION')}" charset="utf-8"></script>
-    <style>
-        body {
-            -webkit-font-smoothing: antialiased;
-        }
-        .background {
-            position: absolute;
-            right: 0px;
-            top: 0px;
-            bottom: 0px;
-            left: 0px;
-            background: url('__IMG__/wall/{:rand(1,9)}.jpg');
-            background-size: 100% 100%;
-            -moz-background-size: 100% 100%;
-            -o-background-size: 100% 100%;
-            -webkit-background-size: 100% 100%;
-            -ms-background-size: 100% 100%;
-            filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
-        }
-        .navbar {
-            background: rgba(0,0,0,0.3);
-        }
-        .login-panel {
-            box-shadow: 0px 10px 60px rgba(0,0,0,0.4);
-            background: rgba(255,255,255,0.9);
-            margin-top: 10%;
-        }
-        .login-panel .panel-heading {
-            height: 150px;
-            background: #6699cc url('__IMG__/login.png');
-        }
-        .login-panel .panel-heading .panel-title {
-            color: #fff;
-            font-size: 32px;
-            padding-top: 30px;
-            padding-bottom: 5px;
-            font-weight: lighter;
-            -webkit-box-reflect: below -4px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.2)));
-        }
-        .login-panel .panel-heading .panel-title .logo {
-            width: 40px;
-            height: 40px;
-            margin-top: -10px;
-        }
-        .login-panel .panel-heading .info {
-            color: #aaddff;
-            margin-top: 40px;
-        }
-        .login-panel .panel-body {
-            padding: 38px;
-        }
-        .login-panel .verifyimg-box {
-            padding: 0px 0px;
-        }
-        .bottom {
-            color: #eee;
-            font-size: 13px;
-            background: rgba(0,0,0,0.3);
-        }
-        @media (max-width: 768px) {
-            .login-panel .panel-body{
-                padding: 18px;
-            }
-        }
-    </style>
-    <script type="text/javascript">
-        $(function(){
-            particlesJS('particles-js', {
-                particles: {
-                    color: '#fff',
-                    shape: 'triangle', // "circle", "edge" or "triangle"
-                    opacity: 1,
-                    size: 4,
-                    size_random: true,
-                    nb: 150,
-                    line_linked: {
-                        enable_auto: true,
-                        distance: 100,
-                        color: '#fff',
-                        opacity: 1,
-                        width: 1,
-                        condensed_mode: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 600
-                        }
-                },
-                anim: {
-                    enable: true,
-                    speed: 1
-                }
-                },
-                interactivity: {
-                    enable: true,
-                    mouse: {
-                    distance: 250
-                },
-                detect_on: 'canvas', // "canvas" or "window"
-                    mode: 'grab',
-                    line_linked: {
-                    opacity: .5
-                },
-                events: {
-                    onclick: {
-                    enable: true,
-                    mode: 'push', // "push" or "remove" (particles)
-                    nb: 4
-                    }
-                }
-                },
-                /* Retina Display Support */
-                retina_detect: true
-            });
 
-            //刷新验证码
-            $(function(){
-                var verifyimg = $(".verifyimg").attr("src");
-                $(".reloadverify").click(function(){
-                    if( verifyimg.indexOf('?')>0){
-                        $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
-                    }else{
-                        $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
-                    }
-                });
-            });
-        })
-    </script>
+    <script src="__PUBLIC__/libs/jquery/1.x/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/admin.css">
+
 </head>
-<body>
+<?php
+    $CONTROLLER_NAME = strtolower($Think.CONTROLLER_NAME);
+    $ACTION_NAME = strtolower($Think.ACTION_NAME);
+?>
+
+<body id="<?php echo 'body-'.$CONTROLLER_NAME.'-'.$ACTION_NAME; ?>" class="<?php echo 'body-'.$CONTROLLER_NAME.' body-'.$CONTROLLER_NAME.'-'.$ACTION_NAME; ?>">
+
     <div id="particles-js" class="background"></div>
     <div class="container">
         <div class="panel panel-default login-panel border-none padding-none col-xs-12 col-md-4 col-md-offset-4">
@@ -177,6 +55,7 @@
     <div class="bottom navbar-fixed-bottom text-center padding-top padding-bottom">
         <span class="padding-right">Powered by {:C('PRODUCT_NAME')} v{:C('CURRENT_VERSION')}</span>
         <span>Copyright © <a href="{:C('WEBSITE_DOMAIN')}" target="_blank">{:C('COMPANY_NAME')}</a> All rights reserved.</span>
+        <script src="__PUBLIC__/js/admin_source.js"></script>
     </div>
 </body>
 </html>

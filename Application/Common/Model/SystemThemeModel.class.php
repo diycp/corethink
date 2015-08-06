@@ -80,7 +80,7 @@ class SystemThemeModel extends Model{
                     $val['right_button']  = '<a class="label label-success ajax-get" href="'.U('install?name='.$val['name']).'">安装</a>';
                     break;
                 default :
-                    $val['status'] = '<i class="fa fa-ok" style="color:green"></i>';
+                    $val['status'] = '<i class="fa fa-check" style="color:green"></i>';
                     if($val['current']){
                         $val['right_button'] .= '<span class="label label-success" href="#">我是当前主题</span> ';
                     }else{
