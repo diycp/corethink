@@ -58,6 +58,11 @@ var admin_script_files = [
     "Public/libs/bootstrap/js/tab.js",
     "Public/libs/bootstrap/js/affix.js",
 
+    "Public/libs/huploadify/jquery.Huploadify.js",
+    "Public/libs/jquery_tokeninput/src/jquery.tokeninput.js",
+    "Public/libs/moment/min/moment.min.js",
+    "Public/libs/bootstrap_daterangepicker/daterangepicker.js",
+
     "Application/Admin/View/_Layout/$_main.js",
     "Application/Admin/View/Index/$_index.js",
     "Application/Admin/View/Public/$_login.js",
