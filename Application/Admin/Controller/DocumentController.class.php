@@ -85,7 +85,11 @@ class DocumentController extends AdminController{
                     $('.modal-title').html('移动选中的的文章至：');
                     $('#moveModal').modal('show', 'fit')
                 }else{
-                    alertMessager('请选择需要移动的文章', 'danger');
+                    $.bootstrapGrowl('请选择需要移动的文章', {
+                        type: 'danger',
+                        align: 'center',
+                        width: 'auto',
+                    });
                 }
             }
         </script>

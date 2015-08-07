@@ -63,7 +63,11 @@
                             window.onbeforeunload = function(){ return null; }
                         }
                     }else{
-                        alertMessager(data.info, 'danger');
+                        $.bootstrapGrowl(data.info, {
+                            type: 'danger',
+                            align: 'center',
+                            width: 'auto',
+                        });
                     }
                 }
             });

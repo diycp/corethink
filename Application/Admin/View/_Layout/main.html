@@ -9,20 +9,18 @@
     <meta name="keywords" content="{$meta_keywords}">
     <meta name="description" content="{$meta_description}">
     <meta name="generator" content="CoreThink">
-
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="{:C('WEB_SITE_TITLE')}">
     <link rel="apple-touch-icon" type="image/x-icon" href="__ROOT__/favicon.ico">
-
     <link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico">
 
-    <script src="__PUBLIC__/libs/jquery/1.x/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/admin.css">
     <?php if(0): ?>
-        <link rel="stylesheet" type="text/css" href="__PUBLIC__/libs/bootstrap_extend/css/bootstrap.extend.css?v={:C('STATIC_VERSION')}">
         <link rel="stylesheet" type="text/css" href="__CSS__/{:C('ADMIN_THEME')}.css?v={:C('STATIC_VERSION')}"><!-- 后台主题CSS -->
     <?php endif; ?>
     <block name="style"></block>
+
+    <script src="__PUBLIC__/libs/jquery/1.x/jquery-1.11.3.min.js"></script>
 </head>
 
 <?php
@@ -72,7 +70,7 @@
                                 <li><a target="_blank" href="{:U('Home/User/center')}"><i class="fa fa-home"></i> 个人中心</a></li>
                                 <li><a href="{:U('Admin/User/edit', array('id' => is_login()))}"><i class="fa fa-edit"></i> 修改信息</a></li>
                                 <li class="divider"></li>
-                                <li><a href="{:U('Admin/Public/logout')}" class="ajax-get"><i class="fa fa-log-out"></i> 退出</a></li>
+                                <li><a href="{:U('Admin/Public/logout')}" class="ajax-get"><i class="fa fa-sign-out"></i> 退出</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -145,12 +143,13 @@
 
     <div class="clearfix full-script">
         <div class="container">
-            <input type="hidden" id="universal" data-universal='{<block name="universal"></block>}' >
-
-
+            <div id="universal">
+                <script type="text/javascript">
+                    var $universalObject{$Think.CONTROLLER_NAME} = {<block name='universal'></block>};
+                </script>
+            </div>
+            <block name="libs"></block>
             <script src="__PUBLIC__/js/admin_source.js"></script>
-            <!-- <script type="text/javascript" src="__PUBLIC__/libs/bootstrap_extend/js/bootstrap.extend.js?v={:C('STATIC_VERSION')}" charset="utf-8"></script> -->
-
             <block name="script"></block>
         </div>
     </div>

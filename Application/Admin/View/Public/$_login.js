@@ -1,4 +1,22 @@
 $(function() {
+    if (!$('body').hasClass("body-public-login")) {
+        return false;
+    }
+
+
+    //刷新验证码
+    $(function() {
+        var verifyimg = $(".verifyimg").attr("src");
+        $(".reloadverify").click(function() {
+            if (verifyimg.indexOf('?') > 0) {
+                $(".verifyimg").attr("src", verifyimg + '&random=' + Math.random());
+            } else {
+                $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+            }
+        });
+    });
+
+
     // particlesJS('particles-js', {
     //     particles: {
     //         color: '#fff',
@@ -46,15 +64,4 @@ $(function() {
     //     retina_detect: true
     // });
 
-    //刷新验证码
-    $(function() {
-        var verifyimg = $(".verifyimg").attr("src");
-        $(".reloadverify").click(function() {
-            if (verifyimg.indexOf('?') > 0) {
-                $(".verifyimg").attr("src", verifyimg + '&random=' + Math.random());
-            } else {
-                $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
-            }
-        });
-    });
-})
+});

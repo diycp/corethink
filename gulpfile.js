@@ -62,6 +62,7 @@ var admin_script_files = [
     "Public/libs/jquery_tokeninput/src/jquery.tokeninput.js",
     "Public/libs/moment/min/moment.min.js",
     "Public/libs/bootstrap_daterangepicker/daterangepicker.js",
+    "Public/libs/bootstrap_growl/jquery.bootstrap-growl.js",
 
     "Application/Admin/View/_Layout/$_main.js",
     "Application/Admin/View/Index/$_index.js",

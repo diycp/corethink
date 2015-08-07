@@ -171,11 +171,11 @@
                                                 uploader:'{:U("Home/Upload/upload")}',
                                                 fileTypeExts:'*.gif;*.jpg;*.jpeg;*.png;*.bmp',
                                                 fileSizeLimit:{:C('UPLOAD_IMAGE_SIZE')}*1024,
-                                                buttonText:'上 传 图 片',
+                                                buttonText:'上传图片',
                                                 onUploadComplete:function(file, data){
                                                     var data = $.parseJSON(data);
                                                     if(data.error == 1){
-                                                        alertMessager(data.message);
+                                                        $.bootstrapGrowl(data.message);
                                                     }else{
                                                         $('#preview_{$k} img').attr('src', data.url);
                                                         $('#preview_{$k} input').attr('value', data.id);
@@ -203,11 +203,11 @@
                                                 uploader:'{:U("Home/Upload/upload")}',
                                                 fileTypeExts:'*.gif;*.jpg;*.jpeg;*.png;*.bmp',
                                                 fileSizeLimit:{:C('UPLOAD_IMAGE_SIZE')}*1024,
-                                                buttonText:'上 传 图 片',
+                                                buttonText:'上传图片',
                                                 onUploadComplete:function(file, data){
                                                     var data = $.parseJSON(data);
                                                     if(data.error == 1){
-                                                        alertMessager(data.message);
+                                                        $.bootstrapGrowl(data.message);
                                                     }else{
                                                         var input = $('#preview_{$k} input');
                                                         var new_img = '<span class="img-box"><img class="img img-responsive" src="' + data.url + '"><i class="fa fa-remove-sign remove-picture"></i></span>';
@@ -223,7 +223,9 @@
                                             //删除图片
                                             $('#preview_{$k} .remove-picture').click(function(){
                                                 var ready_for_remove_id = $(this).closest('.img-box').find('img').attr('data-id'); //获取待删除的图片ID
-                                                if(!ready_for_remove_id){alertMessager('错误');}
+                                                if(!ready_for_remove_id){
+                                                    $.bootstrapGrowl('错误');
+                                                }
                                                 var current_picture_ids = $('#preview_{$k} input').val().split(","); //获取当前图集以逗号分隔的ID并转换成数组
                                                 current_picture_ids.remove(ready_for_remove_id); //从数组中删除待删除的图片ID
                                                 $('#preview_{$k} input').val(current_picture_ids.join(',')) //删除后覆盖原input的值
@@ -251,11 +253,11 @@
                                                              '*.swf;*.flv;*.mp3;*.wav;*.wma;*.wmv;*.mid;*.avi;*.mpg;*.asf;*.rm;*.rmvb;*.mp4;'+
                                                              '*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.wps;*.txt;*.zip;*.rar;*.gz;*.bz2;*.7z',
                                                 fileSizeLimit:{:C('UPLOAD_FILE_SIZE')}*1024,
-                                                buttonText:'上 传 文 件',
+                                                buttonText:'上传文件',
                                                 onUploadComplete:function(file, data){
                                                     var data = $.parseJSON(data);
                                                     if(data.error == 1){
-                                                        alertMessager(data.message);
+                                                        $.bootstrapGrowl(data.message);
                                                     }else{
                                                         $('#preview_{$k} .list-group').html('<li class="list-group-item"><i class="fa fa-file"></i> '+data.name+'</li>');
                                                         $('#preview_{$k} input').attr('value', data.id);
@@ -287,11 +289,11 @@
                                                              '*.swf;*.flv;*.mp3;*.wav;*.wma;*.wmv;*.mid;*.avi;*.mpg;*.asf;*.rm;*.rmvb;*.mp4;'+
                                                              '*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.wps;*.txt;*.zip;*.rar;*.gz;*.bz2;*.7z',
                                                 fileSizeLimit:{:C('UPLOAD_FILE_SIZE')}*1024,
-                                                buttonText:'添 加 文 件',
+                                                buttonText:'添加文件',
                                                 onUploadComplete:function(file, data){
                                                     var data = $.parseJSON(data);
                                                     if(data.error == 1){
-                                                        alertMessager(data.message);
+                                                        $.bootstrapGrowl(data.message);
                                                     }else{
                                                         $('#preview_{$k} .list-group').append('<li class="list-group-item file-item"><i class="fa fa-file remove-file"></i> '+data.name+'</li>');
                                                         var input = $('#preview_{$k} input');
@@ -306,7 +308,11 @@
                                             //删除文件
                                             $('#preview_{$k} .remove-file').click(function(){
                                                 var ready_for_remove_id = $(this).closest('.file-item').attr('data-id'); //获取待删除的文件ID
-                                                if(!ready_for_remove_id){alertMessager('错误');}
+                                                if(!ready_for_remove_id){
+                                                    $.bootstrapGrowl('错误', {
+                                                        type: 'danger',
+                                                    });
+                                                }
                                                 var current_file_ids = $('#preview_{$k} input').val().split(","); //获取当前文件列表以逗号分隔的ID并转换成数组
                                                 current_file_ids.remove(ready_for_remove_id); //从数组中删除待删除的文件ID
                                                 $('#preview_{$k} input').val(current_file_ids.join(',')) //删除后覆盖原input的值
@@ -596,11 +602,11 @@
                                                                                         uploader:'{:U("Home/Upload/upload")}',
                                                                                         fileTypeExts:'*.gif;*.jpg;*.jpeg;*.png;*.bmp',
                                                                                         fileSizeLimit:{:C('UPLOAD_IMAGE_SIZE')}*1024,
-                                                                                        buttonText:'上 传 图 片',
+                                                                                        buttonText:'上传图片',
                                                                                         onUploadComplete:function(file, data){
                                                                                             var data = $.parseJSON(data);
                                                                                             if(data.error == 1){
-                                                                                                alertMessager(data.message);
+                                                                                                $.bootstrapGrowl(data.message);
                                                                                             }else{
                                                                                                 $('#tab_{$group_k}_preview_{$tab_k} img').attr('src', data.url);
                                                                                                 $('#tab_{$group_k}_preview_{$tab_k} input').attr('value', data.id);
@@ -628,11 +634,11 @@
                                                                                         uploader:'{:U("Home/Upload/upload")}',
                                                                                         fileTypeExts:'*.gif;*.jpg;*.jpeg;*.png;*.bmp',
                                                                                         fileSizeLimit:{:C('UPLOAD_IMAGE_SIZE')}*1024,
-                                                                                        buttonText:'上 传 图 片',
+                                                                                        buttonText:'上传图片',
                                                                                         onUploadComplete:function(file, data){
                                                                                             var data = $.parseJSON(data);
                                                                                             if(data.error == 1){
-                                                                                                alertMessager(data.message);
+                                                                                                $.bootstrapGrowl(data.message);
                                                                                             }else{
                                                                                                 var input = $('#tab_{$group_k}_preview_{$tab_k} input');
                                                                                                 var new_img = '<span class="img-box"><img class="img img-responsive" src="' + data.url + '" data-id="'+data.id+'"><i class="fa fa-remove-sign remove-picture"></i></span>';
@@ -648,7 +654,13 @@
                                                                                     //删除图片
                                                                                     $('#tab_{$group_k}_preview_{$tab_k} .remove-picture').click(function(){
                                                                                         var ready_for_remove_id = $(this).closest('.img-box').find('img').attr('data-id'); //获取待删除的图片ID
-                                                                                        if(!ready_for_remove_id){alertMessager('错误');}
+                                                                                        if(!ready_for_remove_id){
+                                                                                            $.bootstrapGrowl('错误', {
+                                                                                                type: 'danger',
+                                                                                                align: 'center',
+                                                                                                width: 'auto',
+                                                                                            });
+                                                                                        }
                                                                                         var current_picture_ids = $('#tab_{$group_k}_preview_{$tab_k} input').val().split(","); //获取当前图集以逗号分隔的ID并转换成数组
                                                                                         current_picture_ids.remove(ready_for_remove_id); //从数组中删除待删除的图片ID
                                                                                         $('#tab_{$group_k}_preview_{$tab_k} input').val(current_picture_ids.join(',')) //删除后覆盖原input的值
@@ -676,11 +688,11 @@
                                                                                                      '*.swf;*.flv;*.mp3;*.wav;*.wma;*.wmv;*.mid;*.avi;*.mpg;*.asf;*.rm;*.rmvb;*.mp4;'+
                                                                                                      '*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.wps;*.txt;*.zip;*.rar;*.gz;*.bz2;*.7z',
                                                                                         fileSizeLimit:{:C('UPLOAD_FILE_SIZE')}*1024,
-                                                                                        buttonText:'上 传 文 件',
+                                                                                        buttonText:'上传文件',
                                                                                         onUploadComplete:function(file, data){
                                                                                             var data = $.parseJSON(data);
                                                                                             if(data.error == 1){
-                                                                                                alertMessager(data.message);
+                                                                                                $.bootstrapGrowl(data.message);
                                                                                             }else{
                                                                                                 $('#tab_{$group_k}_preview_{$tab_k} .list-group').html('<li class="list-group-item"><i class="fa fa-file"></i> '+data.name+'</li>');
                                                                                                 $('#tab_{$group_k}_preview_{$tab_k} input').attr('value', data.id);
@@ -712,11 +724,11 @@
                                                                                                      '*.swf;*.flv;*.mp3;*.wav;*.wma;*.wmv;*.mid;*.avi;*.mpg;*.asf;*.rm;*.rmvb;*.mp4;'+
                                                                                                      '*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.wps;*.txt;*.zip;*.rar;*.gz;*.bz2;*.7z',
                                                                                         fileSizeLimit:{:C('UPLOAD_FILE_SIZE')}*1024,
-                                                                                        buttonText:'添 加 文 件',
+                                                                                        buttonText:'添加文件',
                                                                                         onUploadComplete:function(file, data){
                                                                                             var data = $.parseJSON(data);
                                                                                             if(data.error == 1){
-                                                                                                alertMessager(data.message);
+                                                                                                $.bootstrapGrowl(data.message);
                                                                                             }else{
                                                                                                 var new_file = '<li class="list-group-item file-item" data-id="'+data.id+'"><i class="fa fa-file"></i> '
                                                                                                                +data.name+' <i class="fa fa-remove-sign remove-file"></i></li>'
@@ -733,7 +745,13 @@
                                                                                     //删除文件
                                                                                     $('#tab_{$group_k}_preview_{$tab_k} .remove-file').click(function(){
                                                                                         var ready_for_remove_id = $(this).closest('.file-item').attr('data-id'); //获取待删除的文件ID
-                                                                                        if(!ready_for_remove_id){alertMessager('错误');}
+                                                                                        if(!ready_for_remove_id) {
+                                                                                            $.bootstrapGrowl('错误', {
+                                                                                                type: 'danger',
+                                                                                                align: 'center',
+                                                                                                width: 'auto',
+                                                                                            });
+                                                                                        }
                                                                                         var current_file_ids = $('#tab_{$group_k}_preview_{$tab_k} input').val().split(","); //获取当前文件列表以逗号分隔的ID并转换成数组
                                                                                         current_file_ids.remove(ready_for_remove_id); //从数组中删除待删除的文件ID
                                                                                         $('#tab_{$group_k}_preview_{$tab_k} input').val(current_file_ids.join(',')) //删除后覆盖原input的值
