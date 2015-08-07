@@ -63,13 +63,16 @@ class UploadModel extends Model{
         /* 返回标准数据 */
         $return = array('error' => 0);
         $dir = I('post.dir'); //上传类型image、flash、media、file
+
         //根据上传文件类型改变上传大小限制
         $upload_config = C('UPLOAD_CONFIG');
+
         if($dir == 'image'){
             $upload_config['maxSize'] = C('UPLOAD_IMAGE_SIZE')*1024*1024; //图片的上传大小限制
         }else{
             $upload_config['maxSize'] = C('UPLOAD_FILE_SIZE')*1024*1024; //普通文件上传大小限制
         }
+
         C('UPLOAD_CONFIG', $upload_config);
 
         //上传配置

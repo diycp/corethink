@@ -76,7 +76,7 @@ $(function() {
 
 
     //ajax get请求
-    $('.ajax-get').click(function() {
+    $('.builder').on('click', '.ajax-get', function() {
         var target;
         var that = this;
         if ($(this).hasClass('confirm')) {
@@ -124,18 +124,21 @@ $(function() {
         return false;
     });
 
+
+
     //ajax post submit请求
-    $('.ajax-post').click(function() {
+    $('body').on('click', '.ajax-post', function() {
         var target, query, form;
         var target_form = $(this).attr('target-form');
         var that = this;
         var nead_confirm = false;
+
         if (($(this).attr('type') == 'submit') || (target = $(this).attr('href')) || (target = $(this).attr('url'))) {
             form = $('.' + target_form);
             if ($(this).attr('hide-data') === 'true') { //无数据时也可以使用的功能
                 form = $('.hide-data');
                 query = form.serialize();
-            } else if (form.get(0) === undefined) {
+            } else if (form.get(0) == undefined) {
                 return false;
             } else if (form.get(0).nodeName == 'FORM') {
                 if ($(this).hasClass('confirm')) {
@@ -169,8 +172,10 @@ $(function() {
                 }
                 query = form.find('input,select,textarea').serialize();
             }
+
             $(that).addClass('disabled').attr('autocomplete', 'off').prop('disabled', true);
             $.post(target, query).success(function(data) {
+
                 if (data.status == 1) {
                     if (data.url) {
                         message = data.info + ' 页面即将自动跳转~';

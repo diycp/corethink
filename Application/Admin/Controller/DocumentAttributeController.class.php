@@ -82,7 +82,7 @@ EOF;
             if($data){
                 $id = $document_attribute_object->add();
                 if($id){
-                    $result = $document_attribute_object->addTableColumn($data); //新增表字段
+                    $result = $document_attribute_object->addField($data); //新增表字段
                     if($result){
                         $this->success('新增字段成功', U('index', array('doc_type' => I('doc_type'))));
                     }else{

@@ -1,15 +1,21 @@
+// 通用表单（列表＋内容）
 .builder {
-    .builder-tabs {
-        margin-bottom: 15px;
-    }
-    .builder-toolbar {
-        margin-bottom: 15px;
-    }
-    .builder-container {
-        margin-bottom: 15px;
+    .builder-tabs, .builder-toolbar, .builder-container {
+        margin-bottom: 10px;
     }
 }
-.builder-form {
+//
+// 通用表单 内容
+.builder-form-box {
+    .huploadify-upload {
+        margin-bottom: 10px;
+    }
+    .huploadify-preview {
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    }
     // 多图上传
     .img-box {
         position: relative;

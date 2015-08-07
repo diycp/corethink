@@ -1,20 +1,21 @@
 <script type="text/javascript" src="__PUBLIC__/libs/kindeditor/kindeditor-min.js" charset="utf-8"></script>
 
-<div class="builder builder-form">
+
+<div class="builder builder-form-box">
     <notempty name="tab_nav">
-            <div class="builder-tabs builder-form-tabs">
-                <ul class="nav nav-tabs">
-                    <volist name="tab_nav.tab_list" id="tab">
-                        <li class="<php>if($tab_nav['current_tab'] == $key) echo 'active';</php>"><a href="{$tab.href}">{$tab.title}</a></li>
-                    </volist>
-                </ul>
-            </div>
+        <div class="builder-tabs builder-form-tabs">
+            <ul class="nav nav-tabs">
+                <volist name="tab_nav.tab_list" id="tab">
+                    <li class="<php>if($tab_nav['current_tab'] == $key) echo 'active';</php>"><a href="{$tab.href}">{$tab.title}</a></li>
+                </volist>
+            </ul>
+        </div>
     </notempty>
 
     <!-- 数据列表 -->
     <div class="row">
         <div class="col-xs-12">
-            <form action="{$post_url}" method="post" class="form">
+            <form action="{$post_url}" method="post" class="form builder-form">
                 <volist name="form_items" id="form" key="k">
                     <div class="form-group item_{$form.name} {$form.extra_class}">
                         <php>if($form['type'] != 'group' && $form['type'] != 'hidden'):</php>
@@ -23,27 +24,27 @@
                         <div class="controls">
                             <switch name="form.type">
                                 <case value="hidden">
-                                    <input type="hidden" class="form-control input" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
+                                    <input type="hidden" class="form-control input hidden-one" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
                                 </case>
                                 <!-- 数字 -->
                                 <case value="num">
-                                    <input type="text" class="form-control input num" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
+                                    <input type="text" class="form-control input num num-one" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
                                 </case>
                                 <!-- 字符串 -->
                                 <case value="text">
-                                    <input type="text" class="form-control input text" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
+                                    <input type="text" class="form-control input text text-one" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
                                 </case>
                                 <!-- 文本 -->
                                 <case value="textarea">
-                                    <textarea class="form-control textarea" rows="5" name="{$form.name}" {$form.extra_attr}>{$form.value}</textarea>
+                                    <textarea class="form-control textarea textarea-one" rows="5" name="{$form.name}" {$form.extra_attr}>{$form.value}</textarea>
                                 </case>
                                 <!-- 数组 -->
                                 <case value="array">
-                                    <textarea class="form-control textarea" rows="5" name="{$form.name}" {$form.extra_attr}>{$form.value}</textarea>
+                                    <textarea class="form-control textarea array array-one" rows="5" name="{$form.name}" {$form.extra_attr}>{$form.value}</textarea>
                                 </case>
                                 <!-- 密码 -->
                                 <case value="password">
-                                    <input type="password" class="form-control input password" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
+                                    <input type="password" class="form-control input password password-one" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
                                 </case>
                                 <!-- 单选按钮 -->
                                 <case value="radio">
@@ -55,13 +56,13 @@
                                     <foreach name="form.options" item="option" key="option_key">
                                         <label class="radio-inline" for="{$form.name}{$option_key}">
                                             <php>if(is_array($option)):</php>
-                                                <input type="radio" id="{$form.name}{$option_key}" class="radio" name="{$form.name}" value="{$option}" <eq name="form.value" value="$option_key"> checked</eq> {$form.extra_attr}
+                                                <input type="radio" id="{$form.name}{$option_key}" class="radio radio-one" name="{$form.name}" value="{$option}" <eq name="form.value" value="$option_key"> checked</eq> {$form.extra_attr}
                                                     <foreach name="option" item="option2" key="option_key2">
                                                         {$option_key2}="{$option2}"
                                                     </foreach>>
                                                 {$option.title}
                                             <php>else:</php>
-                                                <input type="radio" id="{$form.name}{$option_key}" class="radio" name="{$form.name}" value="{$option_key}" <eq name="form.value" value="$option_key"> checked</eq> {$form.extra_attr}> {$option}
+                                                <input type="radio" id="{$form.name}{$option_key}" class="radio radio-one" name="{$form.name}" value="{$option_key}" <eq name="form.value" value="$option_key"> checked</eq> {$form.extra_attr}> {$option}
                                             <php>endif;</php>
                                         </label>
                                     </foreach>
@@ -83,13 +84,13 @@
                                     <foreach name="form.options" item="option" key="option_key">
                                         <label class="checkbox-inline">
                                             <php>if(is_array($option)):</php>
-                                                <input type="checkbox" name="{$form.name}[]" value="{$option_key}" <in name="option_key" value="$form.value"> checked</in> {$form.extra_attr}
+                                                <input type="checkbox" name="{$form.name}[]" class="checkbox checkbox-one" value="{$option_key}" <in name="option_key" value="$form.value"> checked</in> {$form.extra_attr}
                                                     <foreach name="option" item="option2" key="option_key2">
                                                         {$option_key2}="{$option2}"
                                                     </foreach>>
                                                 {$option.title}
                                             <php>else:</php>
-                                                <input type="checkbox" name="{$form.name}[]" value="{$option_key}" <in name="option_key" value="$form.value"> checked</in> {$form.extra_attr}>{$option}
+                                                <input type="checkbox" name="{$form.name}[]" class="checkbox checkbox-one" value="{$option_key}" <in name="option_key" value="$form.value"> checked</in> {$form.extra_attr}>{$option}
                                             <php>endif;</php>
                                         </label>
                                     </foreach>
@@ -105,69 +106,89 @@
                                         <option value=''>请选择：</option>
                                         <foreach name="form.options" item="option" key="option_key">
                                             <php>if(is_array($option)):</php>
-                                                <option value="{$option_key}" <eq name="form.value" value="$option_key"> selected</eq>
+                                                <option value="{$option_key}" class="select select-one" <eq name="form.value" value="$option_key"> selected</eq>
                                                     <foreach name="option" item="option2" key="option_key2">
                                                         {$option_key2}="{$option2}"
                                                     </foreach>>
                                                     {$option.title}
                                                 </option>
                                             <php>else:</php>
-                                                <option value="{$option_key}" <eq name="form.value" value="$option_key"> selected</eq>>{$option}</option>
+                                                <option value="{$option_key}" class="select select-one" <eq name="form.value" value="$option_key"> selected</eq>>{$option}</option>
                                             <php>endif;</php>
                                         </foreach>
                                     </select>
                                 </case>
                                 <!-- 图标 -->
                                 <case value="icon">
-                                    <input id="icon_{$k}" type="text" class="form-control input icon-choosen" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
+                                    <input id="icon_{$k}" type="text" class="form-control input icon-choosen icon icon-one" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
                                 </case>
                                 <!-- 日期 -->
                                 <case value="date">
-                                    <input type="text" id="date_{$k}" class="form-control input date" name="{$form.name}" value="<notempty name='form.value'>{$form.value|time_format='Y-m-d'}</notempty>" {$form.extra_attr}>
+                                    <input type="text" id="date_{$k}" class="form-control input date date-one" name="{$form.name}" value="<notempty name='form.value'>{$form.value|time_format='Y-m-d'}</notempty>" {$form.extra_attr}>
                                     <script type="text/javascript">
                                         $(function(){
                                             $("#date_{$k}").daterangepicker({
-                                                showDropdowns: true,
-                                                singleDatePicker: true,
-                                                startDate: moment().subtract(0, 'days'),
-                                                format: 'YYYY-MM-DD',
-                                                locale: window.daterangepicker_locale
+                                                "singleDatePicker": true,
+                                                "showDropdowns": true,
+                                                "locale": {
+                                                    "format": "YYYY-MM-DD",
+                                                    "separator": " - ",
+                                                    "applyLabel": "确定",
+                                                    "cancelLabel": "取消",
+                                                    "fromLabel": "开始",
+                                                    "toLabel": "结束",
+                                                    "customRangeLabel": "自定义",
+                                                    "daysOfWeek": ['日', '一', '二', '三', '四', '五', '六'],
+                                                    "monthNames": ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                                                    "firstDay": 1
+                                                }
+
                                             });
                                         });
                                     </script>
                                 </case>
                                 <!-- 时间 -->
                                 <case value="time">
-                                    <input type="text" id="time_{$k}" class="form-control input time" name="{$form.name}" value="<notempty name='form.value'>{$form.value|time_format}</notempty>" {$form.extra_attr}>
+                                    <input type="text" id="time_{$k}" class="form-control input time time-one" name="{$form.name}" value="<notempty name='form.value'>{$form.value|time_format}</notempty>" {$form.extra_attr}>
                                     <script type="text/javascript">
                                         $(function(){
                                             $("#time_{$k}").daterangepicker({
-                                                showDropdowns: true,
-                                                singleDatePicker: true,
-                                                startDate: moment().subtract(0, 'days'),
-                                                timePicker: true,
-                                                timePickerIncrement: 5,
-                                                format: 'YYYY-MM-DD h:mm',
-                                                locale: window.daterangepicker_locale
+                                                "singleDatePicker": true,
+                                                "showDropdowns": true,
+                                                "timePicker": true,
+                                                "timePickerIncrement": 1,
+                                                "locale": {
+                                                    "format": "YYYY-MM-DD h:mm",
+                                                    "separator": " - ",
+                                                    "applyLabel": "确定",
+                                                    "cancelLabel": "取消",
+                                                    "fromLabel": "开始",
+                                                    "toLabel": "结束",
+                                                    "customRangeLabel": "自定义",
+                                                    "daysOfWeek": ['日', '一', '二', '三', '四', '五', '六'],
+                                                    "monthNames": ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                                                    "firstDay": 1
+                                                }
+
                                             });
                                         });
                                     </script>
                                 </case>
                                 <!-- 图片 -->
                                 <case value="picture">
-                                    <div id="upload_{$k}" {$form.extra_attr}></div>
-                                    <div id="preview_{$k}">
-                                        <input type="hidden" name="{$form.name}" value="{$form.value}">
+                                    <div id="upload_{$k}" class="huploadify-upload" {$form.extra_attr}></div>
+                                    <div id="preview_{$k}" class="huploadify-preview">
+                                        <input type="hidden" class="picture picture-one" name="{$form.name}" value="{$form.value}">
                                         <img class="img-responsive" src="{$form.value|get_cover}">
                                     </div>
                                     <script type="text/javascript">
                                         $(function(){
                                             $('#upload_{$k}').Huploadify({
-                                                uploader:'{:U("Home/Upload/upload")}',
-                                                fileTypeExts:'*.gif;*.jpg;*.jpeg;*.png;*.bmp',
-                                                fileSizeLimit:{:C('UPLOAD_IMAGE_SIZE')}*1024,
-                                                buttonText:'上传图片',
-                                                onUploadComplete:function(file, data){
+                                                uploader: '{:U("Home/Upload/upload")}',
+                                                fileTypeExts: '*.gif;*.jpg;*.jpeg;*.png;*.bmp',
+                                                fileSizeLimit: {:C('UPLOAD_IMAGE_SIZE')}*1024,
+                                                buttonText: '上传图片',
+                                                onUploadComplete: function(file, data) {
                                                     var data = $.parseJSON(data);
                                                     if(data.error == 1){
                                                         $.bootstrapGrowl(data.message);
@@ -182,9 +203,9 @@
                                 </case>
                                 <!-- 图片(多图) -->
                                 <case value="pictures">
-                                    <div id="upload_{$k}" {$form.extra_attr}></div>
-                                    <div id="preview_{$k}">
-                                        <input type="hidden" name="{$form.name}" value="{$form.value}">
+                                    <div id="upload_{$k}" class="huploadify-upload" {$form.extra_attr}></div>
+                                    <div id="preview_{$k}" class="huploadify-preview">
+                                        <input type="hidden" class="pictures pictures-one" name="{$form.name}" value="{$form.value}">
                                         <notempty name="form.value">
                                             <?php $images = explode(',',$form['value']); ?>
                                             <foreach name="images" item="img">
@@ -231,9 +252,9 @@
                                 </case>
                                 <!-- 文件 -->
                                 <case value="file">
-                                    <div id="upload_{$k}" {$form.extra_attr}></div>
-                                    <div id="preview_{$k}">
-                                        <input type="hidden" name="{$form.name}" value="{$form.value}">
+                                    <div id="upload_{$k}" class="huploadify-upload" {$form.extra_attr}></div>
+                                    <div id="preview_{$k}" class="huploadify-preview">
+                                        <input type="hidden" class="file file-one" name="{$form.name}" value="{$form.value}">
                                         <ul class="list-group margin-top">
                                             <notempty name="form.value">
                                                 <li class="list-group-item"><i class="fa fa-file"></i> {$form.value|get_upload_info='name'}</li>
@@ -264,9 +285,9 @@
                                 </case>
                                 <!-- 多文件 -->
                                 <case value="files">
-                                    <div id="upload_{$k}" {$form.extra_attr}></div>
-                                    <div id="preview_{$k}">
-                                        <input type="hidden" name="{$form.name}" value="{$form.value}">
+                                    <div id="upload_{$k}" class="huploadify-upload" {$form.extra_attr}></div>
+                                    <div id="preview_{$k}" class="huploadify-preview">
+                                        <input type="hidden" class="files files-one" name="{$form.name}" value="{$form.value}">
                                         <ul class="list-group margin-top file-box">
                                             <notempty name="form.value">
                                                 <?php $files = explode(',',$form['value']); ?>
@@ -318,7 +339,7 @@
                                 </case>
                                 <!-- 编辑器 -->
                                 <case value="kindeditor">
-                                    <textarea name="{$form.name}" class="form-control kindeditor_{$k}" {$form.extra_attr}>{$form.value}</textarea>
+                                    <textarea name="{$form.name}" class="form-control kindeditor_{$k} richeditor richeditor-one" {$form.extra_attr}>{$form.value}</textarea>
                                     <script type="text/javascript">
                                         $(function(){
                                             KindEditor.ready(function(K){
@@ -352,7 +373,7 @@
                                 </case>
                                 <!-- 标签 -->
                                 <case value="tags">
-                                    <input type="text" id="tag_{$k}" class="form-control input" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
+                                    <input type="text" id="tag_{$k}" class="form-control input tags tags-one" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
                                     <script type="text/javascript">
                                         $(function(){
                                             //标签自动完成
@@ -391,7 +412,7 @@
                                 </case>
                                 <!-- 拖动排序 -->
                                 <case value="board">
-                                    <input type="hidden" name="{$form.name}" value='{$form.value}'>
+                                    <input type="hidden" class="board board-one" name="{$form.name}" value='{$form.value}'>
                                     <div class="row boards_{$k}" {$form.extra_attr}>
                                         <div class="container-fluid">
                                             <foreach name="form.options" item="option" key="option_key">
@@ -558,11 +579,20 @@
                                                                             <script type="text/javascript">
                                                                                 $(function(){
                                                                                     $("#tab_{$group_k}_date_{$tab_k}").daterangepicker({
-                                                                                        showDropdowns: true,
-                                                                                        singleDatePicker: true,
-                                                                                        startDate: moment().subtract(0, 'days'),
-                                                                                        format: 'YYYY-MM-DD',
-                                                                                        locale: window.daterangepicker_locale
+                                                                                        "singleDatePicker": true,
+                                                                                        "showDropdowns": true,
+                                                                                        "locale": {
+                                                                                            "format": "YYYY-MM-DD",
+                                                                                            "separator": " - ",
+                                                                                            "applyLabel": "确定",
+                                                                                            "cancelLabel": "取消",
+                                                                                            "fromLabel": "开始",
+                                                                                            "toLabel": "结束",
+                                                                                            "customRangeLabel": "自定义",
+                                                                                            "daysOfWeek": ['日', '一', '二', '三', '四', '五', '六'],
+                                                                                            "monthNames": ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                                                                                            "firstDay": 1
+                                                                                        }
                                                                                     });
                                                                                 });
                                                                             </script>
@@ -573,13 +603,23 @@
                                                                             <script type="text/javascript">
                                                                                 $(function(){
                                                                                     $("#tab_{$group_k}_time_{$tab_k}").daterangepicker({
-                                                                                        showDropdowns: true,
-                                                                                        singleDatePicker: true,
-                                                                                        startDate: moment().subtract(0, 'days'),
-                                                                                        timePicker: true,
-                                                                                        timePickerIncrement: 5,
-                                                                                        format: 'YYYY-MM-DD h:mm',
-                                                                                        locale: window.daterangepicker_locale
+                                                                                        "singleDatePicker": true,
+                                                                                        "showDropdowns": true,
+                                                                                        "timePicker": true,
+                                                                                        "timePickerIncrement": 1,
+                                                                                        "locale": {
+                                                                                            "format": "YYYY-MM-DD h:mm",
+                                                                                            "separator": " - ",
+                                                                                            "applyLabel": "确定",
+                                                                                            "cancelLabel": "取消",
+                                                                                            "fromLabel": "开始",
+                                                                                            "toLabel": "结束",
+                                                                                            "customRangeLabel": "自定义",
+                                                                                            "daysOfWeek": ['日', '一', '二', '三', '四', '五', '六'],
+                                                                                            "monthNames": ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                                                                                            "firstDay": 1
+                                                                                        }
+
                                                                                     });
                                                                                 });
                                                                             </script>

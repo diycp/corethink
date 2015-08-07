@@ -25,7 +25,7 @@
             onDestroy: null, //在调用destroy方法时触发
             onSelect: null, //选择文件后的回调函数，可传入参数file
             onQueueComplete: null //队列中的所有文件上传完成后触发
-        }
+        };
 
         var option = $.extend(defaults, opts);
 

@@ -70,7 +70,7 @@ var admin_script_files = [
     "Public/libs/jquery_dragsort/jquery.dragsort.js",
     "Public/libs/jquery_starrating/egstar-rating.js",
     "Public/libs/jquery_tokeninput/src/jquery.tokeninput.js",
-    "Public/libs/jquery_huploadify/jquery.Huploadify.js",
+    "Public/libs/jquery_huploadify/jquery.HuploadifyMod.js",
 
 
     "Application/Admin/View/_Layout/$_main.js",
