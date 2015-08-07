@@ -15,12 +15,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/admin.css">
-    <?php if(0): ?>
-        <link rel="stylesheet" type="text/css" href="__CSS__/{:C('ADMIN_THEME')}.css?v={:C('STATIC_VERSION')}"><!-- 后台主题CSS -->
-    <?php endif; ?>
     <block name="style"></block>
-
     <script src="__PUBLIC__/libs/jquery/1.x/jquery-1.11.3.min.js"></script>
+    <block name="libs"></block>
 </head>
 
 <?php
@@ -148,7 +145,6 @@
                     var $universalObject{$Think.CONTROLLER_NAME} = {<block name='universal'></block>};
                 </script>
             </div>
-            <block name="libs"></block>
             <script src="__PUBLIC__/js/admin_source.js"></script>
             <block name="script"></block>
         </div>

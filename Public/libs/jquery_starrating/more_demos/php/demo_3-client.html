@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>rating simple demo</title>
+
+<link href="../../theme-light/egstar-rating.css" rel="stylesheet" />
+<style type="text/css">	
+	.success-msg { display: none; font-family: Arial, Helvetica, sans-serif; font-size: 11px;  border: 3px solid #4389D5; background: #F2F2F2; color: #1A61AD; padding: 5px 10px; font-weight: bold; margin: 10px 0;  }
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../egstar-rating.min.js"></script>
+<script type="text/javascript">
+	ratings = {};
+	function testFunction(){
+		// the call back function
+		// this.rating is the rating value
+		// this.input is the DOM object for the input that the plugin is attached to.
+		$('#'+this.input.attr('name')+' div').text('You rated: '+this.rating);
+		checkRatings(this.input);
+	}
+	function checkRatings(obj){
+		var success = true;
+		ratings.vals = [];
+		// takes the obj (input that just got rated) and gets the parent 'tr' then loops through each text input inside that row
+		// you can change it to "table" or parent "div" if you have a different container.
+		var par = obj.parents('tr');
+		$(par.find('input[type="text"]')).each(function(){
+			if(!$(this).val()){ 
+				success = false;				
+			}else{
+				ratings.vals.push($(this).val());
+			}														 
+		 });
+		if(success){ par.find('input[type="button"]').removeAttr('disabled');  }
+	}
+	function sendRatingsToServer(){	
+		if($(this).is(":disabled")){ return; }
+		$(this).attr("disabled", true);
+		$('#loading_gif').show();
+		var hash = new Date().getTime();
+		$.get("demo_3-server.php", { 'ratings[]': ratings.vals, 'hsh':hash },
+			function(msg){ showMessage(msg); $('#loading_gif').hide(); }
+		);	
+	}
+	function showMessage(msg){
+		$('#ratings_success').show(); $('#ratings_success').text(msg); 
+	}	
+	$(document).ready(function(){
+		$('#submit_btn').bind("click", sendRatingsToServer);
+		$(".eg-input").elistars({ callback: testFunction });
+	});
+	
+</script>
+
+</head>
+
+<body>
+<form>
+	<p style="font-weight: bold">This demo must be run on a server that serves PHP.</p>
+<p>
+Enable a submit button if all of the container ratings have been selected. 
+In this case the container is the &lt;tr&gt; for all 3 ratings and submit button.</p>
+<p>It uses the callback function in the star rating to call the second function &quot;checkRatings(obj)&quot; passing the DOM obj of the rating that just got selected.</p>
+<p>All of this could be placed into the callback function, just doing it this way for clarity.</p>
+<p> Then loops through it's parent checking the if there are values.</p>
+<p> Pressing Submit calls ajax to send values to PHP script. (NOTE: This is a basic example and you should have validation, like a safe post value to show that it is coming from your script.)</p>
+<div id="ratings_success" class="success-msg"><span>&nbsp;</span></div>
+<table>
+    <tr>
+    	<td><input type="text" class="eg-input" name="rating_1" /></td>
+        <td><input type="text" class="eg-input" name="rating_2" /></td>
+  		<td><input type="text" class="eg-input" name="rating_3" /></td>
+        <td>
+        	<input type="button" id="submit_btn" disabled="disabled" name="submit" value="submit" />
+			<img id="loading_gif" style="display: none;" src="imgs/ajax-loader.gif" alt="sending..." />
+		</td>
+    </tr>
+</table>
+</form>
+</body>
+</html>

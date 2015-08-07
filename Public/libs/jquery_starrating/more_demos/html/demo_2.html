@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>rating simple demo</title>
+
+<link href="theme-light/egstar-rating.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="egstar-rating.min.js"></script>
+<script type="text/javascript">
+	function testFunction(){
+		// the call back function
+		// this.rating is the rating value
+		// this.input is the DOM object for the input that the plugin is attached to.
+		$('#'+this.input.attr('name')+' div').text('You rated: '+this.rating);
+		checkRatings(this.input);
+	}
+	function checkRatings(obj){
+		var success = true;
+		// takes the obj (input that just got rated) and gets the parent 'tr' then loops through each text input inside that row
+		// you can change it to "table" or parent "div" if you have a different container.
+		var par = obj.parents('tr');
+		$(par.find('input[type="text"]')).each(function(){
+			if(!$(this).val()){ 
+				success = false;
+			}																			 
+		 });
+		if(success){ par.find('input[type="submit"]').removeAttr('disabled');  }
+	}
+	$(document).ready(function(){
+		$(".eg-input").elistars({ callback: testFunction });	});
+	
+</script>
+</head>
+
+<body>
+<form>
+<p>
+Enable a submit button if all of the container ratings have been selected. 
+In this case the container is the &lt;tr&gt; for all 3 ratings and submit button.</p>
+<p>It uses the callback function in the star rating to call the second function &quot;checkRatings(obj)&quot; passing the DOM obj of the rating that just got selected.</p>
+<p> Then loops through it's parent checking the if there are values.</p>
+<table>
+    <tr>
+    	<td><input type="text" class="eg-input" name="test1" id="test" /></td>
+        <td><input type="text" class="eg-input" name="test2" /></td>
+  <td><input type="text" class="eg-input" name="test2" /></td>
+        <td><input type="submit" id="mySubmit" disabled="disabled" name="submit" value="submit" /></td>
+    </tr>
+</table>
+</form>
+</body>
+</html>

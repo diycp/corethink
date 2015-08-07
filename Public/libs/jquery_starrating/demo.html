@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>rating simple demo</title>
+
+<link href="theme-light/egstar-rating.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="egstar-rating.min.js"></script>
+<script type="text/javascript">
+	function testFunction(){
+		// the call back function
+		// this.rating is the rating value
+		// this.input is the DOM object for the input that the plugin is attached to.
+		$('#'+this.input.attr('name')+' div').text('You rated: '+this.rating);
+	}
+
+	$(document).ready(function(){
+		$(".eg-input").elistars({ callback: testFunction });
+	
+	});
+	
+</script>
+</head>
+
+<body>
+<table>
+	<tr>
+    	<td><div id="test1" style="border: 1px solid #ccc; padding: 15px; width: 115px;"> This is your star rating test1 <div></div></div></td>
+        <td><div id="test2" style="border: 1px solid #ccc; padding: 15px; width: 115px;"> This is your star rating test2 <div></div></div></td>
+    </tr>
+    <tr>
+    	<td><input type="text" class="eg-input" name="test1" /></td>
+        <td><input type="text" class="eg-input" name="test2" /></td>
+    </tr>
+</table>
+</body>
+</html>

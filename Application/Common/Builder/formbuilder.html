@@ -119,12 +119,7 @@
                                 </case>
                                 <!-- 图标 -->
                                 <case value="icon">
-                                    <input id="icon_{$k}" type="text" class="form-control input" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
-                                    <script type="text/javascript">
-                                        $(function(){
-                                            $("#icon_{$k}").iconChoosen({});
-                                        });
-                                    </script>
+                                    <input id="icon_{$k}" type="text" class="form-control input icon-choosen" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
                                 </case>
                                 <!-- 日期 -->
                                 <case value="date">

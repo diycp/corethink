@@ -45,6 +45,10 @@ var ADMIN = {
 
 // SCRIPT ADMIN
 var admin_script_files = [
+    "Public/libs/respond/dest/respond.src.js",
+    "Public/libs/html5shiv/scr/html5shiv.js",
+    "Public/libs/moment/min/moment.min.js",
+
     "Public/libs/bootstrap/js/transition.js",
     "Public/libs/bootstrap/js/alert.js",
     "Public/libs/bootstrap/js/button.js",
@@ -58,11 +62,16 @@ var admin_script_files = [
     "Public/libs/bootstrap/js/tab.js",
     "Public/libs/bootstrap/js/affix.js",
 
-    "Public/libs/huploadify/jquery.Huploadify.js",
-    "Public/libs/jquery_tokeninput/src/jquery.tokeninput.js",
-    "Public/libs/moment/min/moment.min.js",
     "Public/libs/bootstrap_daterangepicker/daterangepicker.js",
     "Public/libs/bootstrap_growl/jquery.bootstrap-growl.js",
+
+    "Public/libs/jquery_cookie/jquery.cookie.js",
+    "Public/libs/jquery_easing/jquery.easing.js",
+    "Public/libs/jquery_dragsort/jquery.dragsort.js",
+    "Public/libs/jquery_starrating/egstar-rating.js",
+    "Public/libs/jquery_tokeninput/src/jquery.tokeninput.js",
+    "Public/libs/jquery_huploadify/jquery.Huploadify.js",
+
 
     "Application/Admin/View/_Layout/$_main.js",
     "Application/Admin/View/Index/$_index.js",
